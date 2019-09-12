@@ -33,4 +33,28 @@ router.post('/', function (req, res) {
     });
 });
 
+router.post('/', function (req, res) {
+    // register using api to maintain clean separation between layers
+    request.post({
+        url: config.apiUrl + '/questions/register',
+        form: req.body,
+        json: true
+    }, function (error, response, body) {
+        if (error) {
+            return res.render('register', { error: 'An error occurred' });
+        }
+
+        if (response.statusCode !== 200) {
+            return res.render('register', {
+                error: response.body,
+                questao: req.body.questao
+            });
+        }
+
+        // return to login page with success message
+        req.session.success = 'Registration successful';
+        return //res.redirect('/login');
+    });
+});
+
 module.exports = router;

@@ -1,0 +1,14 @@
+﻿<h1>Hi {{vm.user.firstName}}!!</h1>
+<h1>Questions</h1>
+<div class="form-container">
+    <form method="post">
+        <div class="form-group">
+            <label for="questao">Questão</label>
+            <input type="text" id="questao" class="form-control" ng-model="vm.question.questao" required />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="vm.saveQuestion()">Save</button>
+            <button class="btn btn-danger" ng-click="">Delete</button>
+        </div>
+    </form>
+</div>
